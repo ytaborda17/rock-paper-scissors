@@ -2,7 +2,6 @@ import { Component, NgModule, Input, Output, EventEmitter, OnInit } from '@angul
 import { CommonModule } from '@angular/common';
 
 import { AuthService, IUser } from '../../services';
-import { UserPanelModule } from '../user-panel/user-panel.component';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 
@@ -55,7 +54,6 @@ export class HeaderComponent implements OnInit {
   imports: [
     CommonModule,
     DxButtonModule,
-    UserPanelModule,
     DxToolbarModule
   ],
   declarations: [ HeaderComponent ],
