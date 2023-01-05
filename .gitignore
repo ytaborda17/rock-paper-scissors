@@ -106,3 +106,5 @@ dist
 .angular/
 
 package-lock.json
+
+.env

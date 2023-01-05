@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, isDevMode } from '@angular/core';
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
 
 @Component({
@@ -15,5 +15,13 @@ export class AppComponent  {
 
   isAuthenticated() {
     return this.authService.loggedIn;
+  }
+
+  ngOnInit(): void {
+    if (isDevMode()) {
+      console.log('Development!');
+    } else {
+      console.log('Production!');
+    }
   }
 }
