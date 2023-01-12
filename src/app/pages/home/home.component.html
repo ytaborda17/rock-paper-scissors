@@ -1,4 +1,37 @@
 <h2 class="content-block">Let's play a game</h2>
 <div class="content-block">
-  <p>home works!</p>
+  
+  <form [formGroup]="gameForm" #ngForm="ngForm" (ngSubmit)='newGame(ngForm)'>
+
+    <div class="form-group">
+      <div class="form-field">
+        <label>Nickname</label>
+        <input formControlName="nickName" type="text"/>
+      </div>
+      <div class="form-field">
+        <label>Rounds</label>
+        <input formControlName="rounds" type="number" (focusout)="checkRounds($event)"/>
+      </div>
+    </div>
+    
+    <div class="game-cards" [ngClass]="ngForm.submitted && !gameForm.invalid  ? 'ready' : 'invisible'">
+      <div>
+        <img src="../../../assets/img/rock.png" alt="rock">
+        <div>Rock</div>
+      </div>
+      
+      <div>
+        <img src="../../../assets/img/scissors.png" alt="scissors">
+        <div>Scissors</div>
+      </div>
+      
+      <div>
+        <img src="../../../assets/img/paper.png" alt="paper">
+        <div>Paper</div>
+      </div>
+    </div>
+    <dx-button icon="spinnext" [disabled]="gameForm.invalid" [useSubmitBehavior]="true" stylingMode="contained"></dx-button>
+
+  </form>
+
 </div>

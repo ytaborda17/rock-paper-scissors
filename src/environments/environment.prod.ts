@@ -1,4 +1,5 @@
 export const environment = {
+  showSideMenu: false,
   production: true,
   firebase: {
     apiKey: process.env['API_KEY'],

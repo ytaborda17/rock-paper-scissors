@@ -24,21 +24,6 @@ export class HeaderComponent implements OnInit {
 
   user: IUser | null = { email: '' };
 
-  userMenuItems = [{
-    text: 'Profile',
-    icon: 'user',
-    onClick: () => {
-      this.router.navigate(['/profile']);
-    }
-  },
-  {
-    text: 'Logout',
-    icon: 'runner',
-    onClick: () => {
-      this.authService.logOut();
-    }
-  }];
-
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './shared/services';
 import { HomeComponent } from './pages/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { DxButtonModule } from 'devextreme-angular';
 
 const routes: Routes = [
   {
@@ -16,7 +19,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true }),
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    DxButtonModule,
+  ],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

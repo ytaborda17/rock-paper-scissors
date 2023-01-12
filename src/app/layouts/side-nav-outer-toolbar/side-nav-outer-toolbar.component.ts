@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 
 import { Router, NavigationEnd } from '@angular/router';
 
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-side-nav-outer-toolbar',
   templateUrl: './side-nav-outer-toolbar.component.html',
@@ -31,17 +33,19 @@ export class SideNavOuterToolbarComponent implements OnInit {
   constructor(private screen: ScreenService, private router: Router) { }
 
   ngOnInit() {
-    this.menuOpened = this.screen.sizes['screen-large'];
-
-    this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        this.selectedRoute = val.urlAfterRedirects.split('?')[0];
-      }
-    });
-
-    this.screen.changed.subscribe(() => this.updateDrawer());
-
-    this.updateDrawer();
+    if (environment.showSideMenu) {
+      this.menuOpened = this.screen.sizes['screen-large'];
+  
+      this.router.events.subscribe(val => {
+        if (val instanceof NavigationEnd) {
+          this.selectedRoute = val.urlAfterRedirects.split('?')[0];
+        }
+      });
+  
+      this.screen.changed.subscribe(() => this.updateDrawer());
+  
+      this.updateDrawer();
+    }
   }
 
   updateDrawer() {
