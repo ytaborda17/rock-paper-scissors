@@ -13,25 +13,11 @@
         <input formControlName="rounds" type="number" (focusout)="checkRounds($event)"/>
       </div>
     </div>
+
     
-    <div class="game-cards" [ngClass]="ngForm.submitted && !gameForm.invalid  ? 'ready' : 'invisible'">
-      <div>
-        <img src="../../../assets/img/rock.png" alt="rock">
-        <div>Rock</div>
-      </div>
-      
-      <div>
-        <img src="../../../assets/img/scissors.png" alt="scissors">
-        <div>Scissors</div>
-      </div>
-      
-      <div>
-        <img src="../../../assets/img/paper.png" alt="paper">
-        <div>Paper</div>
-      </div>
-    </div>
     <dx-button icon="spinnext" [disabled]="gameForm.invalid" [useSubmitBehavior]="true" stylingMode="contained"></dx-button>
+    
+    <app-card-selector [gameId]="gameId" [enableSelection]="ngForm.submitted && !gameForm.invalid" (sendMoveSelection)="receiveMoveSelected($event)"></app-card-selector>
 
   </form>
-
 </div>

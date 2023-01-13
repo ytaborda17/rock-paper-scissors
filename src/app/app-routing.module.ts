@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './shared/services';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent, CardSelectorComponent } from './pages';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DxButtonModule } from 'devextreme-angular';
@@ -30,6 +30,7 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [
     HomeComponent,
+    CardSelectorComponent,
   ]
 })
 export class AppRoutingModule { }

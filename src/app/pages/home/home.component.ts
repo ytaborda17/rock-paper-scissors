@@ -11,15 +11,17 @@ import notify from 'devextreme/ui/notify';
 export class HomeComponent {
 
   gameForm: FormGroup;
-  invalidForm!: Boolean;
+  gameId: Number;
   
   constructor(
     private formBuilder: FormBuilder,
   ) {
+    this.gameId = 0;
+
     this.checkIsEven = this.checkIsEven.bind(this);
     this.gameForm = this.formBuilder.group({
       nickName: ['Yeni', Validators.required ],
-      rounds: [4, [Validators.required, Validators.min(3) , this.checkIsEven ]],
+      rounds: [3, [Validators.required, Validators.min(3) , this.checkIsEven ]],
     });
   }
 
@@ -31,8 +33,12 @@ export class HomeComponent {
   newGame(e: any) {
     console.log('newGame triggered', this.gameForm.value);
 
-    if (this.gameForm.invalid) {
-      this.invalidForm = true;
+    if (!this.gameForm.invalid) {
+      // Save new game, and get ID
+      // this.f['nickName'].disable(true);
+      // this.f['rounds'].disable(true);
+
+      this.gameId = 111;
     }
   }
 
@@ -54,6 +60,12 @@ export class HomeComponent {
       return { isEven: true };
     }
     return null;
+  }
+
+  receiveMoveSelected(value: any) {
+    if(value) {
+      console.log('Move selected received:', value);
+    }
   }
 
 }

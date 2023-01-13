@@ -1,0 +1,9 @@
+<ng-template [ngIf]="gameId && enableSelection">
+  <h3>Game ID {{gameId}}</h3>
+  <div #cardsWrapper class="game-cards">
+    <div *ngFor="let opt of options">
+      <img [src]="'../../../assets/img/' + opt +'.png'" [alt]="opt">
+      <div>{{opt}}</div>
+    </div>
+  </div>
+</ng-template>
