@@ -5,6 +5,10 @@ import { HomeComponent, CardSelectorComponent } from './pages';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DxButtonModule } from 'devextreme-angular';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule} from '@angular/fire/compat'
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 const routes: Routes = [
   {
@@ -25,8 +29,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     DxButtonModule,
+    AngularFireModule,
+    AngularFireDatabaseModule,
   ],
-  providers: [AuthGuardService],
+  providers: [
+    AuthGuardService,
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+  ],
   exports: [RouterModule],
   declarations: [
     HomeComponent,

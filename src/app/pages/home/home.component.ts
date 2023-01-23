@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import notify from 'devextreme/ui/notify';
-
+import { FireService } from './../../services/fire.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,13 +11,13 @@ import notify from 'devextreme/ui/notify';
 export class HomeComponent {
 
   gameForm: FormGroup;
-  gameId: Number;
+  gameId: String;
   
   constructor(
     private formBuilder: FormBuilder,
+    private fire: FireService,
   ) {
-    this.gameId = 0;
-
+    this.gameId = '';
     this.checkIsEven = this.checkIsEven.bind(this);
     this.gameForm = this.formBuilder.group({
       nickName: ['Yeni', Validators.required ],
@@ -34,11 +34,23 @@ export class HomeComponent {
     console.log('newGame triggered', this.gameForm.value);
 
     if (!this.gameForm.invalid) {
-      // Save new game, and get ID
-      // this.f['nickName'].disable(true);
-      // this.f['rounds'].disable(true);
+      this.f['nickName'].disable();
+      this.f['rounds'].disable();
 
-      this.gameId = 111;
+      // search for open games in 'match-making' path if one open patch player2 else
+      // create a new game as follows:
+
+      const game = {
+        dateTime: new Date().getTime(),
+        rounds: this.f['rounds'].value,
+        player1: this.f['nickName'].value,
+      };
+
+      this.fire.save('match', game).then((key: String) => {
+        if (key) {
+          this.gameId = key;
+        }
+      })
     }
   }
 

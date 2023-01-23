@@ -9,14 +9,19 @@
 }
 
 .game-cards > div {
-  background: #f2e01a;
   padding: 20px;
+  box-sizing: border-box;
+  background: #f2e01a;
   transition: all .2s ease-in-out; 
 }
 
-.game-cards > div:hover { 
+.game-cards > div:hover, .game-cards > div.card-selected { 
   cursor: pointer;
   transform: scale(1.1); 
+}
+
+.game-cards > div.card-selected {
+  border-top: 3px solid #000;
 }
 
 .game-cards img {
